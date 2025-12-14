@@ -1,82 +1,76 @@
 import React from 'react';
-import { Shield, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Shield } from 'lucide-react';
 
-const HeroSection = () => {
+const AnimatedBackground = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 gradient-hero opacity-90" />
       
-      <div className="container relative z-10 px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Logo/Shield */}
-          <div className="mb-8 inline-flex items-center justify-center animate-scale-in">
-            <div className="relative">
-              <div className="absolute inset-0 bg-secondary/20 rounded-full blur-2xl animate-shield" />
-              <div className="relative bg-gradient-to-br from-primary to-navy-dark p-6 rounded-2xl shadow-elevated">
-                <Shield className="w-16 h-16 text-primary-foreground" />
-              </div>
-            </div>
-          </div>
+      {/* Animated path lines */}
+      <svg 
+        className="absolute inset-0 w-full h-full opacity-20"
+        viewBox="0 0 1200 800"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {/* India map stylized outline */}
+        <path
+          d="M400,100 C450,120 500,80 550,100 C600,120 650,90 700,110 C720,180 750,220 780,280 C800,320 820,380 800,440 C780,500 750,540 700,580 C650,620 600,660 550,680 C500,700 450,680 400,640 C350,600 320,540 310,480 C300,420 320,360 350,300 C380,240 370,180 400,100"
+          fill="none"
+          stroke="hsl(var(--teal))"
+          strokeWidth="2"
+          strokeDasharray="1000"
+          className="animate-path"
+          style={{ animationDelay: '0s' }}
+        />
+        
+        {/* Travel route lines */}
+        <path
+          d="M200,400 Q400,300 600,350 T900,300"
+          fill="none"
+          stroke="hsl(var(--primary))"
+          strokeWidth="2"
+          strokeDasharray="500"
+          className="animate-path"
+          style={{ animationDelay: '1s' }}
+        />
+        <path
+          d="M150,500 Q350,400 550,450 T850,400"
+          fill="none"
+          stroke="hsl(var(--secondary))"
+          strokeWidth="1.5"
+          strokeDasharray="500"
+          className="animate-path"
+          style={{ animationDelay: '2s' }}
+        />
+        <path
+          d="M250,600 Q450,500 650,550 T950,500"
+          fill="none"
+          stroke="hsl(var(--teal-light))"
+          strokeWidth="1.5"
+          strokeDasharray="500"
+          className="animate-path"
+          style={{ animationDelay: '1.5s' }}
+        />
+      </svg>
 
-          {/* Title */}
-          <h1 
-            className="font-display text-5xl md:text-7xl font-bold mb-6 animate-fade-in"
-            style={{ animationDelay: '0.2s' }}
-          >
-            <span className="text-gradient">Raksha</span>
-            <span className="text-primary">Marg</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p 
-            className="text-xl md:text-2xl font-display font-medium text-primary/80 mb-4 animate-fade-in"
-            style={{ animationDelay: '0.4s' }}
-          >
-            Know Your Route. Travel with Confidence.
-          </p>
-
-          {/* Description */}
-          <p 
-            className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in"
-            style={{ animationDelay: '0.6s' }}
-          >
-            RakshaMarg helps women evaluate the safety of routes before traveling — day or night. 
-            Make informed decisions and travel with awareness.
-          </p>
-
-          {/* CTA Button */}
-          <div 
-            className="animate-fade-in"
-            style={{ animationDelay: '0.8s' }}
-          >
-            <Link to="/check-route">
-              <Button variant="hero" size="xl" className="group">
-                Get Started
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-          </div>
-
-          {/* Trust indicator */}
-          <div 
-            className="mt-12 flex items-center justify-center gap-2 text-sm text-muted-foreground animate-fade-in"
-            style={{ animationDelay: '1s' }}
-          >
-            <Shield className="w-4 h-4 text-secondary" />
-            <span>Empowering safe travels across India</span>
-          </div>
-        </div>
+      {/* Floating shield elements */}
+      <div className="absolute top-1/4 right-1/4 animate-float opacity-10">
+        <Shield className="w-32 h-32 text-primary" />
+      </div>
+      <div className="absolute bottom-1/3 left-1/5 animate-float opacity-5" style={{ animationDelay: '2s' }}>
+        <Shield className="w-24 h-24 text-secondary" />
+      </div>
+      <div className="absolute top-1/2 right-1/6 animate-float opacity-5" style={{ animationDelay: '4s' }}>
+        <Shield className="w-16 h-16 text-teal" />
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex items-start justify-center p-1">
-          <div className="w-1.5 h-3 bg-primary/50 rounded-full animate-pulse" />
-        </div>
-      </div>
-    </section>
+      {/* Gradient orbs */}
+      <div className="absolute top-20 left-1/4 w-96 h-96 bg-teal/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-coral/5 rounded-full blur-3xl" />
+    </div>
   );
 };
 
-export default HeroSection;
+export default AnimatedBackground;
