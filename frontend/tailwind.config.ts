@@ -8,9 +8,7 @@ export default {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+      screens: { "2xl": "1400px" },
     },
     extend: {
       fontFamily: {
@@ -51,42 +49,17 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Adding your specific custom palette
+        // NEW PREMIUM PALETTE
         brand: {
-          light: "#ececec",  // First color
-          teal: "#9fd3c7",   // Second color
-          slate: "#385170",  // Third color
-          navy: "#142d4c",   // Fourth color
+          dark: "#020617",   // Deep Obsidian
+          purple: "#6366f1", // Electric Indigo
+          teal: "#2dd4bf",   // Neon Teal
+          glass: "rgba(255, 255, 255, 0.05)",
         },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "fade-in": {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        "scale-in": {
-          "0%": { opacity: "0", transform: "scale(0.9)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.6s ease-out forwards",
-        "scale-in": "scale-in 0.5s ease-out forwards",
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #6366f1 0deg, #2dd4bf 180deg, #6366f1 360deg)',
       },
     },
   },

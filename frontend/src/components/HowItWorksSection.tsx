@@ -1,74 +1,72 @@
-import React from 'react';
-import { MapPin, Navigation, Search, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { MapPin, Navigation, Search, CheckCircle, ArrowRight } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const steps = [
-  { icon: MapPin, step: '01', title: 'Enter Your Starting Location', description: 'Tell us where your journey begins — your current location or any starting point.' },
-  { icon: Navigation, step: '02', title: 'Enter Your Destination', description: 'Specify where you want to go — home, office, or any place you need to reach.' },
-  { icon: Search, step: '03', title: 'Analyze Route Safety', description: 'Our system evaluates the route conditions and provides safety insights.' },
-  { icon: CheckCircle, step: '04', title: 'Travel with Awareness', description: 'Make informed decisions about your travel based on the safety information provided.' },
+  { icon: MapPin, step: '01', title: 'Start', desc: 'Input your current location.' },
+  { icon: Navigation, step: '02', title: 'End', desc: 'Set your destination.' },
+  { icon: Search, step: '03', title: 'Scan', desc: 'AI analyzes 50+ risk factors.' },
+  { icon: CheckCircle, step: '04', title: 'Go', desc: 'Follow the illuminated path.' },
 ];
 
 const HowItWorksSection = () => {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: targetRef });
+  
+  // Slide panels to the left as we scroll down
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+  
+  // NEW: Fade out the Title as the cards approach
+  // Opacity goes from 1 to 0 within the first 15% of the scroll
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  // Slide the title to the left/fade back to create a motion exit
+  const titleX = useTransform(scrollYProgress, [0, 0.15], ["0%", "-20%"]);
+
   return (
-    <section className="py-24 relative overflow-hidden bg-brand-first">
-      <div className="container px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16 relative z-10">
-          <span className="inline-block px-4 py-1.5 bg-brand-slate/10 text-brand-slate rounded-full text-sm font-medium mb-4">
-            Simple Process
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-            How RakshaMarg Works
-          </h2>
-          <p className="text-lg text-brand-slate">
-            Four simple steps to check your route safety before you travel.
+    <section ref={targetRef} className="relative h-[300vh] bg-brand-dark">
+      
+      {/* Sticky Viewport */}
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        
+        {/* Background Gradient */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none" />
+
+        {/* Dynamic Title (Left) - Now Fades Out */}
+        <motion.div 
+          style={{ opacity: titleOpacity, x: titleX }}
+          className="absolute left-8 lg:left-20 top-1/2 -translate-y-1/2 z-20 max-w-sm p-8"
+        >
+          <div className="text-brand-teal font-mono text-sm mb-4 tracking-widest">SYSTEM_PROCESS</div>
+          <h2 className="font-display text-6xl font-bold mb-6 text-white leading-tight">How It<br/>Works</h2>
+          <p className="text-white/50 text-lg mb-8">
+            An intelligent workflow designed for speed and safety.
           </p>
-        </div>
-
-        <div className="relative max-w-5xl mx-auto">
-          {/* Animated Connection line for Desktop */}
-          <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-brand-slate/10 overflow-hidden">
-             <motion.div 
-               initial={{ x: '-100%' }}
-               whileInView={{ x: '0%' }}
-               viewport={{ once: true, margin: "-100px" }}
-               transition={{ duration: 1.5, ease: "easeOut" }}
-               className="h-full w-full bg-gradient-to-r from-transparent via-brand-teal to-transparent"
-             />
+          <div className="flex items-center gap-2 text-brand-purple animate-pulse">
+            <span className="text-xs font-bold uppercase tracking-widest">Scroll Down</span>
+            <ArrowRight className="w-4 h-4 rotate-90" />
           </div>
+        </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
-                className="relative group"
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-center border border-brand-slate/5 relative z-10 h-full">
-                  {/* Step number */}
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 bg-brand-teal text-brand-navy rounded-full flex items-center justify-center font-display font-bold text-sm shadow-lg ring-4 ring-brand-first">
-                    {step.step}
-                  </div>
-
-                  {/* Icon */}
-                  <div className="w-16 h-16 mx-auto mt-4 mb-5 bg-brand-first rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-teal/20 transition-all duration-300">
-                    <step.icon className="w-8 h-8 text-brand-navy" />
-                  </div>
-
-                  <h3 className="font-display text-lg font-semibold text-brand-navy mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-brand-slate text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        {/* Moving Cards Track */}
+        <motion.div style={{ x }} className="flex gap-8 pl-[600px] items-center"> 
+          {steps.map((step, i) => (
+            <div 
+              key={i} 
+              className="relative h-[450px] w-[350px] shrink-0 rounded-[2rem] bg-white/5 border border-white/10 p-10 flex flex-col justify-end backdrop-blur-md transition-all hover:bg-white/10 hover:border-brand-teal/30 group"
+            >
+              <div className="absolute top-8 right-8 text-8xl font-bold text-white/5 font-display group-hover:text-brand-teal/10 transition-colors">
+                {step.step}
+              </div>
+              <div className="mb-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-purple to-brand-dark flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                <step.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-4xl font-bold text-white mb-4">{step.title}</h3>
+              <p className="text-white/60 text-lg">{step.desc}</p>
+            </div>
+          ))}
+          {/* Spacer */}
+          <div className="w-[200px]" /> 
+        </motion.div>
       </div>
     </section>
   );

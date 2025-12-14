@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,89 +6,46 @@
 
 @layer base {
   :root {
-    /* Mapping User Palette:
-      1. First  (#ececec) -> Background / Light Elements
-      2. Second (#9fd3c7) -> Secondary / Accents (Teal)
-      3. Third  (#385170) -> Primary / Muted Text (Slate Blue)
-      4. Fourth (#142d4c) -> Foreground / Dark Backgrounds (Navy)
-    */
-
-    /* Background: First Color (#ececec) */
-    --background: 0 0% 92.5%; /* #ececec */
+    /* "Nocturnal Guardian" Palette */
     
-    /* Foreground (Text): Fourth Color (#142d4c) */
-    --foreground: 213 58% 19%; /* #142d4c */
+    /* Background: Deep Obsidian */
+    --background: 222 47% 5%; /* #020617 */
+    --foreground: 210 40% 98%; /* White text */
 
-    /* Card: White or First Color */
-    --card: 0 0% 100%;
-    --card-foreground: 213 58% 19%;
+    /* Card: Slightly lighter glass */
+    --card: 222 47% 8%; 
+    --card-foreground: 210 40% 98%;
 
-    /* Popover */
-    --popover: 0 0% 100%;
-    --popover-foreground: 213 58% 19%;
+    --popover: 222 47% 5%;
+    --popover-foreground: 210 40% 98%;
 
-    /* Primary: Third Color (#385170) */
-    --primary: 213 33% 33%; /* #385170 */
-    --primary-foreground: 0 0% 92.5%;
+    /* Primary: Electric Indigo */
+    --primary: 243 75% 59%; /* #6366f1 */
+    --primary-foreground: 210 40% 98%;
 
-    /* Secondary: Second Color (#9fd3c7) */
-    --secondary: 166 36% 73%; /* #9fd3c7 */
-    --secondary-foreground: 213 58% 19%;
+    /* Secondary: Neon Teal */
+    --secondary: 168 76% 50%; /* #2dd4bf */
+    --secondary-foreground: 222 47% 11%;
 
-    /* Muted */
-    --muted: 213 33% 33%; /* Using Third color as muted base often works, or a shade of First */
-    --muted-foreground: 213 40% 40%;
-
-    /* Accent */
-    --accent: 166 36% 73%; /* Second Color */
-    --accent-foreground: 213 58% 19%;
-
-    /* Destructive */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 213 33% 33%; /* Third Color for borders */
-    --input: 213 33% 33%;
-    --ring: 213 33% 33%;
-
-    --radius: 0.75rem;
-
-    /* Custom Palette Variables for direct usage */
-    --brand-first: 0 0% 92.5%;   /* #ececec */
-    --brand-second: 166 36% 73%; /* #9fd3c7 */
-    --brand-third: 213 33% 33%;  /* #385170 */
-    --brand-fourth: 213 58% 19%; /* #142d4c */
-  }
-
-  .dark {
-    /* Dark Mode Mappings (Inverted) */
-    --background: 213 58% 19%; /* Fourth Color as background */
-    --foreground: 0 0% 92.5%;  /* First Color as text */
-
-    --card: 213 58% 15%;
-    --card-foreground: 0 0% 92.5%;
-
-    --popover: 213 58% 15%;
-    --popover-foreground: 0 0% 92.5%;
-
-    --primary: 166 36% 73%;    /* Second Color (Teal) pop in dark mode */
-    --primary-foreground: 213 58% 19%;
-
-    --secondary: 213 33% 33%;  /* Third Color */
-    --secondary-foreground: 0 0% 92.5%;
-
-    --muted: 213 50% 25%;
+    --muted: 217 33% 15%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 166 36% 73%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 243 75% 59%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 213 33% 33%;
-    --input: 213 33% 33%;
-    --ring: 166 36% 73%;
+    --border: 217 33% 15%;
+    --input: 217 33% 15%;
+    --ring: 243 75% 59%;
+
+    --radius: 1rem; /* Softer, modern roundness */
+    
+    /* Custom Tokens for Animations */
+    --brand-dark: 222 47% 5%;
+    --brand-purple: 243 75% 59%;
+    --brand-teal: 168 76% 50%;
   }
 }
 
@@ -96,47 +53,21 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30;
     font-family: 'Inter', sans-serif;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
-  }
-}
-
-@layer components {
-  /* Helper classes using your palette */
-  .bg-brand-first { background-color: hsl(var(--brand-first)); }
-  .bg-brand-second { background-color: hsl(var(--brand-second)); }
-  .bg-brand-third { background-color: hsl(var(--brand-third)); }
-  .bg-brand-fourth { background-color: hsl(var(--brand-fourth)); }
-  
-  .text-brand-first { color: hsl(var(--brand-first)); }
-  .text-brand-second { color: hsl(var(--brand-second)); }
-  .text-brand-third { color: hsl(var(--brand-third)); }
-  .text-brand-fourth { color: hsl(var(--brand-fourth)); }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--brand-third)) 0%, hsl(var(--brand-fourth)) 100%);
+    letter-spacing: -0.02em; /* Tight typography for premium feel */
   }
 }
 
 @layer utilities {
-  .animate-float { animation: float 6s ease-in-out infinite; }
-  .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-  .animate-shield { animation: shieldPulse 2s ease-in-out infinite; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes shieldPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
+  .text-glow {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
 }
