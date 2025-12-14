@@ -1,13 +1,11 @@
 import React from 'react';
 import { Shield, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import AnimatedBackground from './AnimatedBackground';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <AnimatedBackground />
       
       <div className="container relative z-10 px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
@@ -68,13 +66,6 @@ const HeroSection = () => {
             <Shield className="w-4 h-4 text-secondary" />
             <span>Empowering safe travels across India</span>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex items-start justify-center p-1">
-          <div className="w-1.5 h-3 bg-primary/50 rounded-full animate-pulse" />
         </div>
       </div>
     </section>
