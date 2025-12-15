@@ -60,7 +60,11 @@ const CheckRoute = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="inline-flex items-center justify-center w-16 h-16 bg-brand-teal/10 rounded-2xl mb-6 border border-brand-teal/20"
               >
-                <Shield className="w-8 h-8 text-brand-teal" />
+                <img 
+                  src="/logo.png" 
+                  alt="RakshaMarg Logo" 
+                  className="w-8 h-8 object-contain" 
+                />
               </motion.div>
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}

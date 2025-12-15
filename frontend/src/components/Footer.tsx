@@ -1,5 +1,4 @@
 import React from 'react';
-import { Shield } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -13,7 +12,11 @@ const Footer = () => {
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <div className="bg-brand-light/10 p-2 rounded-lg">
-                  <Shield className="w-6 h-6 text-brand-teal" />
+                  <img 
+                    src="/logo.png" 
+                    alt="RakshaMarg Logo" 
+                    className="w-6 h-6 object-contain" 
+                  />
                 </div>
                 <span className="font-display text-2xl font-bold text-brand-light">RakshaMarg</span>
               </div>
