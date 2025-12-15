@@ -71,3 +71,15 @@
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
 }
+
+/* Force transparency so 3D shows through */
+section {
+  background-color: transparent !important;
+}
+
+/* Optional: Add glass effect to cards */
+.card, .group {
+  background: rgba(20, 20, 30, 0.6) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -7,6 +7,7 @@ import HowItWorksSection from '@/components/HowItWorksSection';
 import WhySection from '@/components/WhySection';
 import TrustSection from '@/components/TrustSection';
 import Footer from '@/components/Footer';
+import { Experience } from '@/components/Experience'; // Import the 3D scene
 
 const Index = () => {
   return (
@@ -17,9 +18,15 @@ const Index = () => {
         <meta name="keywords" content="women safety, route safety, travel safety, safe routes, India travel safety" />
       </Helmet>
       
-      <div className="min-h-screen bg-background">
+      {/* THE 3D BACKGROUND LAYER */}
+      <Experience />
+
+      {/* MAIN CONTENT - Removed bg-background to let 3D show through */}
+      <div className="min-h-screen relative z-10">
         <Navbar />
         <main>
+          {/* Note: Ensure HeroSection and other components have transparent backgrounds 
+              or glassmorphism styles so the 3D city is visible behind them. */}
           <HeroSection />
           <ProblemSection />
           <section id="how-it-works">
