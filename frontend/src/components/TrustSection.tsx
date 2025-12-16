@@ -25,15 +25,13 @@ const TrustSection = () => {
 
       <div className="container px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-primary-foreground">
-          {/* Icon */}
+          {/* Icon - Modified: Removed circle background, increased logo size */}
           <div className="inline-flex items-center justify-center mb-8">
-            <div className="relative">
-              <div className="absolute inset-0 bg-secondary/30 rounded-full blur-xl animate-pulse-slow" />
-              <div className="relative bg-secondary/20 backdrop-blur-sm p-5 rounded-full border border-secondary/30">
-                {/* Replaced Shield icon with Logo */}
-                <img src={logo} alt="RakshaMarg Logo" className="w-12 h-12 object-contain" />
-              </div>
-            </div>
+             <img 
+               src={logo} 
+               alt="RakshaMarg Logo" 
+               className="w-32 h-32 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
+             />
           </div>
 
           {/* Quote */}
