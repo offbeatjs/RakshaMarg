@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -7,7 +7,9 @@ import HowItWorksSection from '@/components/HowItWorksSection';
 import WhySection from '@/components/WhySection';
 import TrustSection from '@/components/TrustSection';
 import Footer from '@/components/Footer';
-import { Experience } from '@/components/Experience'; // Import the 3D scene
+
+// OPTIMIZATION 6: Lazy Load the heavy 3D component
+const Experience = lazy(() => import('@/components/Experience').then(module => ({ default: module.Experience })));
 
 const Index = () => {
   return (
@@ -18,15 +20,15 @@ const Index = () => {
         <meta name="keywords" content="women safety, route safety, travel safety, safe routes, India travel safety" />
       </Helmet>
       
-      {/* THE 3D BACKGROUND LAYER */}
-      <Experience />
+      {/* THE 3D BACKGROUND LAYER - Loaded Lazily */}
+      <Suspense fallback={<div className="fixed inset-0 bg-[#050505] z-[-1]" />}>
+        <Experience />
+      </Suspense>
 
-      {/* MAIN CONTENT - Removed bg-background to let 3D show through */}
+      {/* MAIN CONTENT */}
       <div className="min-h-screen relative z-10">
         <Navbar />
         <main>
-          {/* Note: Ensure HeroSection and other components have transparent backgrounds 
-              or glassmorphism styles so the 3D city is visible behind them. */}
           <HeroSection />
           <ProblemSection />
           <section id="how-it-works">

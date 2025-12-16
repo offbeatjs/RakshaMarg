@@ -8,11 +8,12 @@ import mapBg from '../assets/map.png';
 import docImg from '../assets/doc.png';
 import pilotImg from '../assets/pilot.png';
 import soldierImg from '../assets/soldier.png';
+import logoImg from '../assets/logo.png'; // Logo Import
 
 const HeroSection = () => {
   const ref = useRef(null);
   
-  // Floating Images Logic
+  // Floating Images Logic (Restored for Secured Box)
   const images = [docImg, pilotImg, soldierImg];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -36,12 +37,9 @@ const HeroSection = () => {
       
       {/* --- LAYER 1: CINEMATIC BACKGROUND --- */}
       <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
-        
-        {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-brand-dark/30 mix-blend-multiply z-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent z-20" />
         
-        {/* MAP IMAGE - Loads faster with less scale animation */}
         <motion.img 
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
@@ -51,7 +49,6 @@ const HeroSection = () => {
           className="w-full h-full object-cover grayscale-[100%] contrast-[1.25] brightness-75" 
         />
         
-        {/* SCANNING RADAR EFFECT */}
         <motion.div 
           animate={{ top: ['-10%', '110%'] }}
           transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
@@ -79,7 +76,6 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 z-30 w-full p-6 md:p-20 pb-12 md:pb-24">
         <div className="max-w-5xl lg:max-w-[55%] xl:max-w-[65%] 2xl:max-w-5xl transition-all duration-300">
           
-          {/* Glowing Badge - Immediate entry (0.1s delay) */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -92,7 +88,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Title - Fast spring animation */}
           <div className="overflow-hidden mb-4 md:mb-6 pb-2 md:pb-4">
             <motion.h1 
               initial={{ y: "100%" }}
@@ -105,7 +100,6 @@ const HeroSection = () => {
           </div>
           
           <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-end">
-            {/* Description - 0.2s delay */}
             <motion.p 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -116,7 +110,6 @@ const HeroSection = () => {
                predictive safety scoring, and a community watching over you.
             </motion.p>
 
-            {/* Button - 0.3s delay */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -141,14 +134,13 @@ const HeroSection = () => {
       </div>
 
       {/* --- LAYER 4: FLOATING HUD & IMAGES (Right Side) --- */}
-      {/* HUD - 0.4s delay (was 1.5s) */}
       <motion.div 
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
         className="absolute bottom-24 right-8 md:right-20 lg:right-12 xl:right-20 z-30 hidden lg:flex flex-col gap-6 lg:scale-75 xl:scale-90 2xl:scale-100 lg:origin-bottom-right transition-transform duration-300"
       >
-        {/* 1. Secured Personnel Card */}
+        {/* 1. Secured Personnel Card (RESTORED CYCLING IMAGES) */}
         <div className="bg-white/5 border border-white/10 p-6 rounded-3xl w-72 backdrop-blur-2xl border-l-4 border-l-brand-purple">
           <div className="flex items-center gap-4 mb-4">
              <div className="relative w-12 h-12 flex items-center justify-center">
@@ -179,11 +171,16 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* 2. Status Check Card */}
+        {/* 2. Status Check Card (UPDATED WITH LOGO) */}
         <div className="bg-white/5 border border-white/10 p-6 rounded-3xl w-72 backdrop-blur-2xl border-l-4 border-l-brand-teal">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-brand-teal/20 flex items-center justify-center text-brand-teal">
-              <Shield className="w-6 h-6" />
+            {/* Replaced Shield Icon with Logo */}
+            <div className="w-12 h-12 rounded-xl bg-brand-teal/20 flex items-center justify-center p-2 border border-brand-teal/30">
+               <img 
+                  src={logoImg}
+                  alt="Raksha Marg Logo"
+                  className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(45,212,191,0.5)]" 
+               />
             </div>
             <div>
               <div className="text-2xl font-bold text-white">Safe</div>
@@ -191,7 +188,6 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-             {/* Progress Bar - 0.6s delay (was 2.0s) */}
              <motion.div 
                initial={{ width: 0 }}
                animate={{ width: "94%" }}

@@ -8,7 +8,9 @@ import { ReactLenis } from '@studio-freight/react-lenis';
 import Index from "./pages/Index";
 import CheckRoute from "./pages/CheckRoute";
 import NotFound from "./pages/NotFound";
-import Inspiration from "./pages/Inspiration"; // Import here
+import Inspiration from "./pages/Inspiration";
+// 1. IMPORT THE HELPER
+import ScrollToAnchor from "./components/ScrollToAnchor"; 
 
 const queryClient = new QueryClient();
 
@@ -20,10 +22,13 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            {/* 2. ADD IT HERE (Inside Router, so it can see useLocation) */}
+            <ScrollToAnchor /> 
+            
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/check-route" element={<CheckRoute />} />
-              <Route path="/inspiration" element={<Inspiration />} /> {/* Add Route here */}
+              <Route path="/inspiration" element={<Inspiration />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
