@@ -9,27 +9,27 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Default: Third Color (Slate) -> Hover: Fourth Color (Navy)
+        
         default: "bg-brand-slate text-brand-light hover:bg-brand-navy shadow-md hover:shadow-lg",
         
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         
-        // Outline: Border Slate, Text Slate -> Hover: Fill Slate
+        
         outline: "border-2 border-brand-slate bg-transparent text-brand-slate hover:bg-brand-slate hover:text-brand-light",
         
-        // Secondary: Second Color (Teal) -> Text Navy
+        
         secondary: "bg-brand-teal text-brand-navy hover:bg-brand-teal/80 font-semibold",
         
         ghost: "hover:bg-brand-slate/10 hover:text-brand-slate",
         link: "text-brand-slate underline-offset-4 hover:underline",
         
-        // Hero: Gradient Slate to Navy -> Text Light
+        
         hero: "bg-gradient-to-r from-brand-slate to-brand-navy text-brand-light font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-100",
         
-        // Teal Variant (Explicit): Teal bg -> Navy text
+        
         teal: "bg-brand-teal text-brand-navy font-semibold shadow-md hover:bg-brand-teal/90",
         
-        // Navy Variant: Navy bg -> Light text
+        
         navy: "bg-brand-navy text-brand-light font-semibold shadow-md hover:bg-brand-navy/90",
       },
       size: {

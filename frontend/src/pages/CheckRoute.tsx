@@ -26,7 +26,7 @@ const CheckRoute = () => {
     if (!fromLocation || !toLocation) return;
     
     setIsAnalyzing(true);
-    // Simulate analysis
+    
     setTimeout(() => {
       setIsAnalyzing(false);
       setShowResults(true);
@@ -46,13 +46,13 @@ const CheckRoute = () => {
         <meta name="description" content="Check the safety of your travel route before you go." />
       </Helmet>
 
-      {/* Main Background: Dark Brand Color */}
+      {}
       <div className="min-h-screen bg-brand-dark flex flex-col font-sans text-white">
         <Navbar />
         
         <main className="flex-1 pt-24 md:pt-32 pb-20">
           
-          {/* Header Section */}
+          {}
           <section className="container px-4 mb-12">
             <div className="max-w-3xl mx-auto text-center">
               <motion.div 
@@ -85,7 +85,7 @@ const CheckRoute = () => {
             </div>
           </section>
 
-          {/* INPUT SECTION */}
+          {}
           <section className="container px-4 mb-16">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
@@ -93,11 +93,11 @@ const CheckRoute = () => {
               transition={{ delay: 0.3 }}
               className="max-w-2xl mx-auto"
             >
-              {/* Glassmorphism Card */}
+              {}
               <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-8 border border-white/10 shadow-2xl">
                 <div className="space-y-6">
                   
-                  {/* From Input */}
+                  {}
                   <div className="relative group">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-purple group-focus-within:text-brand-teal transition-colors">
                       <MapPin className="w-5 h-5" />
@@ -111,12 +111,12 @@ const CheckRoute = () => {
                     />
                   </div>
 
-                  {/* Connector Line */}
+                  {}
                   <div className="flex items-center justify-center -my-2">
                     <div className="w-0.5 h-8 bg-gradient-to-b from-brand-purple/50 to-brand-teal/50 rounded-full" />
                   </div>
 
-                  {/* To Input */}
+                  {}
                   <div className="relative group">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-teal group-focus-within:text-brand-purple transition-colors">
                       <Navigation className="w-5 h-5" />
@@ -130,7 +130,7 @@ const CheckRoute = () => {
                     />
                   </div>
 
-                  {/* Action Button */}
+                  {}
                   <Button 
                     size="xl" 
                     className="w-full h-16 text-lg font-bold rounded-2xl bg-gradient-to-r from-brand-purple to-brand-teal text-white hover:opacity-90 transition-all shadow-lg hover:shadow-brand-teal/20"
@@ -154,12 +154,12 @@ const CheckRoute = () => {
             </motion.div>
           </section>
 
-          {/* RESULTS SECTION */}
+          {}
           {showResults && (
             <section className="container px-4 mb-16 animate-fade-in">
               <div className="max-w-4xl mx-auto grid lg:grid-cols-5 gap-6">
                 
-                {/* Map Preview */}
+                {}
                 <div className="lg:col-span-3 bg-white/5 rounded-3xl overflow-hidden border border-white/10 shadow-lg">
                   <div className="p-6 border-b border-white/5 bg-white/5">
                     <h2 className="font-display text-xl font-bold flex items-center gap-2 text-white">
@@ -168,7 +168,7 @@ const CheckRoute = () => {
                     </h2>
                   </div>
                   
-                  {/* Dark Map Placeholder */}
+                  {}
                   <div className="aspect-[4/3] bg-black/40 flex items-center justify-center relative">
                     <div className="text-center z-10">
                       <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/10">
@@ -195,7 +195,7 @@ const CheckRoute = () => {
                   </div>
                 </div>
 
-                {/* Safety Score Panel */}
+                {}
                 <div className="lg:col-span-2 space-y-6">
                   <div className="bg-white/5 rounded-3xl p-6 border border-white/10 shadow-lg">
                     <h3 className="font-display text-lg font-bold text-white mb-4 flex items-center gap-2">
@@ -242,7 +242,7 @@ const CheckRoute = () => {
             </section>
           )}
 
-          {/* Safety Tips */}
+          {}
           <section className="container px-4">
              <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8">
                 <div className="flex items-center gap-3 mb-6">

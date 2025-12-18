@@ -27,7 +27,7 @@ const problems = [
 const ProblemSection = () => {
   return (
     <section className="py-24 bg-card relative overflow-hidden">
-      {/* Subtle background pattern */}
+      {}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--primary)) 1px, transparent 0)`,

@@ -10,20 +10,20 @@ export const SceneController = () => {
   const timeline = useRef<gsap.core.Timeline>();
 
   useLayoutEffect(() => {
-    // Initial Camera Position (Hero)
+    
     camera.position.set(0, 8, 12);
     camera.lookAt(0, 0, 0);
 
     timeline.current = gsap.timeline({
       scrollTrigger: {
-        trigger: "body", // Watch the whole page scroll
+        trigger: "body", 
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5, // Smooth catch-up effect
+        scrub: 1.5, 
       },
     });
 
-    // ANIMATION 1: Swoop down to street level (Problem Section)
+    
     timeline.current.to(camera.position, {
       x: 3,
       y: 1.5,
@@ -32,7 +32,7 @@ export const SceneController = () => {
       ease: "power2.inOut"
     });
     
-    // ANIMATION 2: Rotate around (How it Works)
+    
     timeline.current.to(camera.position, {
       x: -4,
       y: 6,

@@ -19,7 +19,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Space Grotesk", "sans-serif"], // Ensure you have a font or remove this line
+        display: ["Space Grotesk", "sans-serif"], 
         sans: ["Inter", "sans-serif"],
       },
       colors: {
@@ -56,12 +56,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // --- YOUR CUSTOM COLORS ---
+        
         brand: {
-          dark: "#0b0614",      // The dark purple/black background
-          purple: "#8a2cff",    // The main accent purple
-          teal: "#2dd4bf",      // The teal accent
-          light: "#eae7f5",     // Light text color
+          dark: "#0b0614",      
+          purple: "#8a2cff",    
+          teal: "#2dd4bf",      
+          light: "#eae7f5",     
         },
       },
       keyframes: {

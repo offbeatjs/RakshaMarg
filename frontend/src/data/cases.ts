@@ -3,7 +3,7 @@ import bilkisImg from '../assets/bilkis.jpg';
 import hathrasImg from '../assets/hathras.jpeg';
 import iitBhuImg from '../assets/iit-bhu.jpeg';
 import rgKarImg from '../assets/rg-kar.jpg'; 
-import varanasiImg from '../assets/1.avif'; // Ensure this image exists in assets
+import varanasiImg from '../assets/1.avif'; 
 
 export const casesData = [
   {

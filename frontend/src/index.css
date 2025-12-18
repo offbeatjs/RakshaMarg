@@ -6,25 +6,25 @@
 
 @layer base {
   :root {
-    /* "Nocturnal Guardian" Palette */
     
-    /* Background: Deep Obsidian */
-    --background: 222 47% 5%; /* #020617 */
-    --foreground: 210 40% 98%; /* White text */
+    
+    
+    --background: 222 47% 5%; 
+    --foreground: 210 40% 98%; 
 
-    /* Card: Slightly lighter glass */
+    
     --card: 222 47% 8%; 
     --card-foreground: 210 40% 98%;
 
     --popover: 222 47% 5%;
     --popover-foreground: 210 40% 98%;
 
-    /* Primary: Electric Indigo */
-    --primary: 243 75% 59%; /* #6366f1 */
+    
+    --primary: 243 75% 59%; 
     --primary-foreground: 210 40% 98%;
 
-    /* Secondary: Neon Teal */
-    --secondary: 168 76% 50%; /* #2dd4bf */
+    
+    --secondary: 168 76% 50%; 
     --secondary-foreground: 222 47% 11%;
 
     --muted: 217 33% 15%;
@@ -40,9 +40,9 @@
     --input: 217 33% 15%;
     --ring: 243 75% 59%;
 
-    --radius: 1rem; /* Softer, modern roundness */
+    --radius: 1rem; 
     
-    /* Custom Tokens for Animations */
+    
     --brand-dark: 222 47% 5%;
     --brand-purple: 243 75% 59%;
     --brand-teal: 168 76% 50%;
@@ -59,7 +59,7 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
-    letter-spacing: -0.02em; /* Tight typography for premium feel */
+    letter-spacing: -0.02em; 
   }
 }
 
@@ -72,12 +72,12 @@
   }
 }
 
-/* Force transparency so 3D shows through */
+
 section {
   background-color: transparent !important;
 }
 
-/* Optional: Add glass effect to cards */
+
 .card, .group {
   background: rgba(20, 20, 30, 0.6) !important;
   backdrop-filter: blur(10px);

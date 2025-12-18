@@ -2,15 +2,15 @@ import React from 'react';
 import { Shield, Heart, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png'; // Import the logo
+import logo from '../assets/logo.png'; 
 
 const TrustSection = () => {
   return (
     <section className="py-24 relative overflow-hidden">
-      {/* Background gradient */}
+      {}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-navy-dark to-primary" />
       
-      {/* Decorative elements */}
+      {}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
         <div className="absolute top-10 left-10 animate-float">
           <Shield className="w-20 h-20" />
@@ -25,7 +25,7 @@ const TrustSection = () => {
 
       <div className="container px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-primary-foreground">
-          {/* Icon - Modified: Removed circle background, increased logo size */}
+          {}
           <div className="inline-flex items-center justify-center mb-8">
              <img 
                src={logo} 
@@ -34,7 +34,7 @@ const TrustSection = () => {
              />
           </div>
 
-          {/* Quote */}
+          {}
           <blockquote className="font-display text-2xl md:text-4xl font-semibold mb-6 leading-relaxed">
             "Confidence in every step - RakshaMarg"
           </blockquote>
@@ -44,7 +44,7 @@ const TrustSection = () => {
             confidence, and complete awareness of her surroundings.
           </p>
 
-          {/* CTA */}
+          {}
           <Link to="/check-route">
             <Button 
               variant="outline" 
@@ -55,7 +55,7 @@ const TrustSection = () => {
             </Button>
           </Link>
 
-          {/* Trust indicators */}
+          {}
           <div className="mt-16 flex flex-wrap items-center justify-center gap-8 opacity-70">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5" />

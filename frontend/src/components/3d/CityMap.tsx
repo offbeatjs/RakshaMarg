@@ -3,14 +3,14 @@ import { useFrame, extend } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-// --- 1. ADVANCED SHIELD SHADER (Clean - No Pattern) ---
+
 const ShieldMaterial = shaderMaterial(
-  { 
-    uTime: 0, 
+  {
+    uTime: 0,
     uColor: new THREE.Color('#6366f1'),
-    uRimColor: new THREE.Color('#a5b4fc') 
+    uRimColor: new THREE.Color('#a5b4fc')
   },
-  // Vertex Shader
+
   `
     varying vec2 vUv;
     varying vec3 vNormal;
@@ -27,7 +27,7 @@ const ShieldMaterial = shaderMaterial(
       gl_Position = projectionMatrix * mvPosition;
     }
   `,
-  // Fragment Shader
+
   `
     uniform float uTime;
     uniform vec3 uColor;
@@ -56,53 +56,58 @@ const ShieldMaterial = shaderMaterial(
 
 extend({ ShieldMaterial });
 
-// --- 2. MAIN CITY COMPONENT ---
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      shieldMaterial: any; // Using any to bypass strict type checking for the custom shader material props
+    }
+  }
+}
+
 export const CityMap = () => {
   return (
     <group>
-      {/* GROUND */}
+      { }
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]}>
         <planeGeometry args={[200, 200]} />
         <meshStandardMaterial color="#080808" roughness={0.1} metalness={0.8} />
       </mesh>
 
-      {/* --- VISIBLE SHIELD --- */}
+      { }
       <Shield />
 
     </group>
   );
 };
 
-// --- 3. SHIELD COMPONENT ---
+
 const Shield = () => {
   const materialRef = useRef<any>(null);
-  
+
   useFrame((state) => {
     if (materialRef.current) {
-        materialRef.current.uTime = state.clock.elapsedTime;
+      materialRef.current.uTime = state.clock.elapsedTime;
     }
   });
 
   return (
     <group position={[0, 0, 0]}>
-       {/* DOME */}
+      { }
       <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[10, 64, 64, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        {/* @ts-ignore */}
-        <shieldMaterial 
-            ref={materialRef} 
-            transparent 
-            depthWrite={false} 
-            side={THREE.DoubleSide} 
-            blending={THREE.AdditiveBlending} 
-            uColor={new THREE.Color("#6366f1")} 
-            uRimColor={new THREE.Color("#a5b4fc")} 
+        <sphereGeometry args={[10, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
+        <shieldMaterial
+          ref={materialRef}
+          transparent
+          depthWrite={false}
+          side={THREE.DoubleSide}
+          blending={THREE.AdditiveBlending}
+          uColor={new THREE.Color("#6366f1")}
+          uRimColor={new THREE.Color("#a5b4fc")}
         />
       </mesh>
-      
-      {/* GROUND RING (Base of the shield) */}
-      <mesh rotation={[-Math.PI/2, 0, 0]} position={[0, 0.1, 0]}>
-        <ringGeometry args={[9.8, 10, 64]} />
+
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.1, 0]}>
+        <ringGeometry args={[9.8, 10, 32]} />
         <meshBasicMaterial color="#6366f1" transparent opacity={0.8} side={THREE.DoubleSide} />
       </mesh>
     </group>

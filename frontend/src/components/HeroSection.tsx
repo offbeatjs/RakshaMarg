@@ -3,17 +3,17 @@ import { Shield, ArrowRight, Activity } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-// Importing assets
+
 import mapBg from '../assets/map.png';
 import docImg from '../assets/doc.png';
 import pilotImg from '../assets/pilot.png';
 import soldierImg from '../assets/soldier.png';
-import logoImg from '../assets/logo.png'; // Logo Import
+import logoImg from '../assets/logo.png'; 
 
 const HeroSection = () => {
   const ref = useRef(null);
   
-  // Floating Images Logic (Restored for Secured Box)
+  
   const images = [docImg, pilotImg, soldierImg];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -24,7 +24,7 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Parallax hooks
+  
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -35,7 +35,7 @@ const HeroSection = () => {
   return (
     <section ref={ref} className="relative h-screen w-full overflow-hidden bg-transparent">
       
-      {/* --- LAYER 1: CINEMATIC BACKGROUND --- */}
+      {}
       <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-brand-dark/30 mix-blend-multiply z-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent z-20" />
@@ -56,7 +56,7 @@ const HeroSection = () => {
         />
       </motion.div>
 
-      {/* --- LAYER 2: GRID OVERLAY --- */}
+      {}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -72,7 +72,7 @@ const HeroSection = () => {
         />
       </motion.div>
 
-      {/* --- LAYER 3: MAIN CONTENT (Bottom Left) --- */}
+      {}
       <div className="absolute bottom-0 left-0 z-30 w-full p-6 md:p-20 pb-12 md:pb-24">
         <div className="max-w-5xl lg:max-w-[55%] xl:max-w-[65%] 2xl:max-w-5xl transition-all duration-300">
           
@@ -133,14 +133,14 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* --- LAYER 4: FLOATING HUD & IMAGES (Right Side) --- */}
+      {}
       <motion.div 
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
         className="absolute bottom-24 right-8 md:right-20 lg:right-12 xl:right-20 z-30 hidden lg:flex flex-col gap-6 lg:scale-75 xl:scale-90 2xl:scale-100 lg:origin-bottom-right transition-transform duration-300"
       >
-        {/* 1. Secured Personnel Card (RESTORED CYCLING IMAGES) */}
+        {}
         <div className="bg-white/5 border border-white/10 p-6 rounded-3xl w-72 backdrop-blur-2xl border-l-4 border-l-brand-purple">
           <div className="flex items-center gap-4 mb-4">
              <div className="relative w-12 h-12 flex items-center justify-center">
@@ -171,10 +171,10 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* 2. Status Check Card (UPDATED WITH LOGO) */}
+        {}
         <div className="bg-white/5 border border-white/10 p-6 rounded-3xl w-72 backdrop-blur-2xl border-l-4 border-l-brand-teal">
           <div className="flex items-center gap-4 mb-4">
-            {/* Replaced Shield Icon with Logo */}
+            {}
             <div className="w-12 h-12 rounded-xl bg-brand-teal/20 flex items-center justify-center p-2 border border-brand-teal/30">
                <img 
                   src={logoImg}

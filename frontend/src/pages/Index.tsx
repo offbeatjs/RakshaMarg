@@ -8,7 +8,7 @@ import WhySection from '@/components/WhySection';
 import TrustSection from '@/components/TrustSection';
 import Footer from '@/components/Footer';
 
-// OPTIMIZATION 6: Lazy Load the heavy 3D component
+
 const Experience = lazy(() => import('@/components/Experience').then(module => ({ default: module.Experience })));
 
 const Index = () => {
@@ -20,12 +20,12 @@ const Index = () => {
         <meta name="keywords" content="women safety, route safety, travel safety, safe routes, India travel safety" />
       </Helmet>
       
-      {/* THE 3D BACKGROUND LAYER - Loaded Lazily */}
+      {}
       <Suspense fallback={<div className="fixed inset-0 bg-[#050505] z-[-1]" />}>
         <Experience />
       </Suspense>
 
-      {/* MAIN CONTENT */}
+      {}
       <div className="min-h-screen relative z-10">
         <Navbar />
         <main>

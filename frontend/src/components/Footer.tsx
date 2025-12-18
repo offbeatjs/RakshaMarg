@@ -2,13 +2,13 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    // Fourth Color (Navy) Background, First Color (Light) Text
+    
     <footer className="bg-brand-navy text-brand-light py-16">
       <div className="container px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Main footer content */}
+          {}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            {/* Brand */}
+            {}
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <div className="bg-brand-light/10 p-2 rounded-lg">
@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Divider using Third Color (Slate) for subtlety */}
+          {}
           <div className="border-t border-brand-slate pt-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-brand-light/60">

@@ -22,7 +22,7 @@ const features = [
     icon: Target,
     title: 'Precision Data',
     description: 'Street-level lighting and crowd density visualization.',
-    // CHANGED: md:row-span-2 -> md:row-span-1
+    
     className: "md:col-span-1 md:row-span-1 bg-brand-teal/10 border-brand-teal/20", 
     iconClass: "text-brand-teal"
   },
@@ -55,7 +55,7 @@ const BentoCard = ({ feature, index }: { feature: any, index: number }) => (
       <p className="text-white/60 text-sm leading-relaxed">{feature.description}</p>
     </div>
     
-    {/* Glow Effect on Hover */}
+    {}
     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
   </motion.div>
 );

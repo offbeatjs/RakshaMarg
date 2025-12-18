@@ -9,14 +9,14 @@ const ScrollToAnchor = () => {
 
   useEffect(() => {
     if (hash && lenis) {
-      // The id usually matches the hash without the '#' character
+      
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
 
       if (element) {
-        // Scroll to the element using Lenis
+        
         lenis.scrollTo(element, { 
-          offset: -50, // Adjust this buffer (e.g., for fixed navbar height)
+          offset: -50, 
           duration: 1.5 
         });
       }

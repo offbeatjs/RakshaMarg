@@ -16,7 +16,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if window has scrolled more than 20px
+      
       if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
@@ -46,7 +46,7 @@ const Navbar = () => {
             : 'bg-transparent'
         }`}>
           
-          {/* --- LOGO SECTION --- */}
+          {}
           <Link to="/" className="flex items-center gap-3">
             <img 
               src={logo} 
@@ -58,7 +58,7 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
+          {}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <Link 
@@ -71,7 +71,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {}
           <div className="hidden md:block">
             <a 
               href="https://dna-coded.github.io/About-Us/" 
@@ -84,7 +84,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Menu */}
+          {}
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>

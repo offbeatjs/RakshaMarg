@@ -13,25 +13,25 @@ const HowItWorksSection = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
   
-  // Slide panels to the left as we scroll down
+  
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
   
-  // NEW: Fade out the Title as the cards approach
-  // Opacity goes from 1 to 0 within the first 15% of the scroll
+  
+  
   const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  // Slide the title to the left/fade back to create a motion exit
+  
   const titleX = useTransform(scrollYProgress, [0, 0.15], ["0%", "-20%"]);
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-brand-dark">
       
-      {/* Sticky Viewport */}
+      {}
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         
-        {/* Background Gradient */}
+        {}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none" />
 
-        {/* Dynamic Title (Left) - Now Fades Out */}
+        {}
         <motion.div 
           style={{ opacity: titleOpacity, x: titleX }}
           className="absolute left-8 lg:left-20 top-1/2 -translate-y-1/2 z-20 max-w-sm p-8"
@@ -47,7 +47,7 @@ const HowItWorksSection = () => {
           </div>
         </motion.div>
 
-        {/* Moving Cards Track */}
+        {}
         <motion.div style={{ x }} className="flex gap-8 pl-[600px] items-center"> 
           {steps.map((step, i) => (
             <div 
@@ -64,7 +64,7 @@ const HowItWorksSection = () => {
               <p className="text-white/60 text-lg">{step.desc}</p>
             </div>
           ))}
-          {/* Spacer */}
+          {}
           <div className="w-[200px]" /> 
         </motion.div>
       </div>
