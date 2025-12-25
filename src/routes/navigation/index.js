@@ -6,6 +6,71 @@ import { geminiService } from '../../services/geminiService.js';
 
 export default async function (fastify, opts) {
 
+    // Helper: Decode Google Maps polyline
+    function decodePolyline(encoded) {
+        const points = [];
+        let index = 0;
+        let lat = 0;
+        let lng = 0;
+
+        while (index < encoded.length) {
+            let b;
+            let shift = 0;
+            let result = 0;
+
+            do {
+                b = encoded.charCodeAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+
+            const dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+
+            shift = 0;
+            result = 0;
+
+            do {
+                b = encoded.charCodeAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+
+            const dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+
+            points.push({ lat: lat / 1e5, lng: lng / 1e5 });
+        }
+
+        return points;
+    }
+
+    // Helper: Calculate Haversine distance between two points (in meters)
+    function haversineDistance(lat1, lng1, lat2, lng2) {
+        const R = 6371000; // Earth's radius in meters
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLng = (lng2 - lng1) * Math.PI / 180;
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
+    }
+
+    // Helper: Calculate minimum distance from point to polyline
+    function minDistanceToPolyline(currentLat, currentLng, polylinePoints) {
+        let minDistance = Infinity;
+
+        for (const point of polylinePoints) {
+            const distance = haversineDistance(currentLat, currentLng, point.lat, point.lng);
+            if (distance < minDistance) {
+                minDistance = distance;
+            }
+        }
+
+        return minDistance;
+    }
+
     // Helper: Map Gemini risk level to Crime Score (0-30)
     function mapRiskLevelToCrimeScore(riskLevel) {
         switch (riskLevel) {
@@ -148,5 +213,68 @@ export default async function (fastify, opts) {
     }, async (request, reply) => {
         // Logic to handle SOS
         return { status: 'SOS Triggered' };
+    });
+
+    // POST /track - Live navigation tracking
+    fastify.post('/track', {
+        schema: {
+            body: {
+                type: 'object',
+                required: ['currentLat', 'currentLng', 'routePolyline'],
+                properties: {
+                    currentLat: { type: 'number' },
+                    currentLng: { type: 'number' },
+                    routePolyline: { type: 'string' }
+                }
+            },
+            response: {
+                200: {
+                    type: 'object',
+                    properties: {
+                        status: { type: 'string' },
+                        needsReroute: { type: 'boolean' },
+                        distanceFromRoute: { type: 'number' },
+                        timestamp: { type: 'string' }
+                    }
+                }
+            }
+        },
+        onRequest: [fastify.verifyApiKey]
+    }, async (request, reply) => {
+        const { currentLat, currentLng, routePolyline } = request.body;
+
+        // Distance threshold in meters (50m default)
+        const THRESHOLD_METERS = 50;
+
+        try {
+            // Decode the polyline to get route coordinates
+            const polylinePoints = decodePolyline(routePolyline);
+
+            if (polylinePoints.length === 0) {
+                return reply.code(400).send({
+                    error: 'Invalid polyline',
+                    message: 'Could not decode route polyline'
+                });
+            }
+
+            // Calculate minimum distance from current location to route
+            const distanceFromRoute = minDistanceToPolyline(currentLat, currentLng, polylinePoints);
+
+            // Determine if user is on route
+            const isOnRoute = distanceFromRoute <= THRESHOLD_METERS;
+
+            return {
+                status: isOnRoute ? 'on_route' : 'off_route',
+                needsReroute: !isOnRoute,
+                distanceFromRoute: Math.round(distanceFromRoute * 100) / 100, // Round to 2 decimals
+                timestamp: new Date().toISOString()
+            };
+        } catch (error) {
+            console.error('Error tracking navigation:', error);
+            return reply.code(500).send({
+                error: 'Tracking failed',
+                message: error.message
+            });
+        }
     });
 }
