@@ -3,7 +3,7 @@
 > **Navigate the Night with Intelligence.**
 
 <p align="center">
-  <img src="public/logo.png" alt="RakshaMarg Logo" width="200" />
+  <img src="frontend/public/logo.png" alt="RakshaMarg Logo" width="200" />
 </p>
 
 ## What is RakshaMarg?
