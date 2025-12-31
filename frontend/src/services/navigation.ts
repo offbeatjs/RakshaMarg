@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://34.59.71.173:8000/api/v1/navigation';
-const API_KEY = 'rakshamarg-dwklhfdewhff-efjjefwoihjfohgn';
+import { API_BASE_URL, API_KEY } from '../config';
 
 const api = axios.create({
-    baseURL: BASE_URL,
+    baseURL: API_BASE_URL,
     headers: {
         'x-api-key': API_KEY,
         'Content-Type': 'application/json',

@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 import mapImage from '@/assets/map.png';
 import { analyzeRouteSafety, getIncidentDetails, RouteInfo, IncidentDetail } from '@/services/navigation';
+import { API_BASE_URL, API_KEY } from '@/config';
 
 const safetyTips = [
   "Share your live location with a trusted contact.",
@@ -356,9 +357,9 @@ const CheckRoute = () => {
 
         // Notify backend
         try {
-          await fetch('http://localhost:3000/api/sos', {
+          await fetch(`${API_BASE_URL}/sos`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-api-key': 'raksha-secure-key-2024' },
+            headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
             body: JSON.stringify({ lat: latitude, lng: longitude, timestamp: new Date().toISOString(), route: routeResult?.summary })
           });
         } catch (e) { console.error(e); }
@@ -394,11 +395,11 @@ const CheckRoute = () => {
           const { latitude, longitude } = position.coords;
 
           try {
-            const response = await fetch('http://localhost:3000/api/track', {
+            const response = await fetch(`${API_BASE_URL}/track`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'x-api-key': 'raksha-secure-key-2024'
+                'x-api-key': API_KEY
               },
               body: JSON.stringify({
                 currentLat: latitude,
