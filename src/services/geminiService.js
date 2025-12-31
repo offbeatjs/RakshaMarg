@@ -126,7 +126,7 @@ using recent publicly available reports.
       
       
     `;
-
+/*
     try {
       const result = await model.generateContent({
         contents: [{ role: "user", parts: [{ text: prompt }] }],
@@ -178,6 +178,8 @@ using recent publicly available reports.
         modelUsed: 'fallback-error',
         error: error.message
       };
+
     }
+      */
   }
 };

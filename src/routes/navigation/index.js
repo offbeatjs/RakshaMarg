@@ -1,5 +1,7 @@
 import { mapsService } from '../../services/mapsService.js';
 import { geminiService } from '../../services/geminiService.js';
+import { safetyRouteController } from '../../controllers/safetyRouteController.js';
+import { incidentDetailsController } from '../../controllers/incidentDetailsController.js';
 // import { firebaseService } from '../../services/firebase.js';
 
 
@@ -277,4 +279,54 @@ export default async function (fastify, opts) {
             });
         }
     });
+
+    // POST /api/v1/routes/safety - Analyze route safety
+    fastify.post('/safety', {
+        schema: {
+            body: {
+                type: 'object',
+                required: ['origin', 'destination'],
+                properties: {
+                    origin: { type: 'string' }, // "lat,lng" or "place_id" or "Address"
+                    destination: { type: 'string' } // "lat,lng" or "place_id" or "Address"
+                }
+            },
+            response: {
+                200: {
+                    type: 'object',
+                    properties: {
+                        routes: { type: 'array' },
+                        safest_route: { type: 'string' }
+                    }
+                }
+            }
+        },
+        onRequest: [fastify.verifyApiKey]
+    }, safetyRouteController.analyzeSafety);
+
+    // GET /api/v1/incident/details - Fetch incident details from Safecity
+    fastify.get('/incident/details', {
+        schema: {
+            querystring: {
+                type: 'object',
+                required: ['id'],
+                properties: {
+                    id: {
+                        type: 'string',
+                        description: 'Comma-separated incident IDs (max 15)'
+                    }
+                }
+            },
+            response: {
+                200: {
+                    type: 'object',
+                    properties: {
+                        count: { type: 'number' },
+                        incidents: { type: 'array' }
+                    }
+                }
+            }
+        },
+        onRequest: [fastify.verifyApiKey]
+    }, incidentDetailsController.getDetails);
 }
