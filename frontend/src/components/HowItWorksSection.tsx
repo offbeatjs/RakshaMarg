@@ -12,32 +12,44 @@ const steps = [
 const HowItWorksSection = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
-  
-  
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
-  
-  
-  
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+
+
+
+  const xDesktop = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+  const xMobile = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+  const x = isMobile ? xMobile : xDesktop;
+
+
+
   const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  
+
   const titleX = useTransform(scrollYProgress, [0, 0.15], ["0%", "-20%"]);
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-brand-dark">
-      
-      {}
+
+      { }
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        
-        {}
+
+        { }
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none" />
 
-        {}
-        <motion.div 
+        { }
+        <motion.div
           style={{ opacity: titleOpacity, x: titleX }}
           className="absolute left-8 lg:left-20 top-1/2 -translate-y-1/2 z-20 max-w-sm p-8"
         >
           <div className="text-brand-teal font-mono text-sm mb-4 tracking-widest">SYSTEM_PROCESS</div>
-          <h2 className="font-display text-6xl font-bold mb-6 text-white leading-tight">How It<br/>Works</h2>
+          <h2 className="font-display text-6xl font-bold mb-6 text-white leading-tight">How It<br />Works</h2>
           <p className="text-white/50 text-lg mb-8">
             An intelligent workflow designed for speed and safety.
           </p>
@@ -47,11 +59,11 @@ const HowItWorksSection = () => {
           </div>
         </motion.div>
 
-        {}
-        <motion.div style={{ x }} className="flex gap-8 pl-[600px] items-center"> 
+        { }
+        <motion.div style={{ x }} className="flex gap-8 pl-[600px] items-center">
           {steps.map((step, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className="relative h-[450px] w-[350px] shrink-0 rounded-[2rem] bg-white/5 border border-white/10 p-10 flex flex-col justify-end backdrop-blur-md transition-all hover:bg-white/10 hover:border-brand-teal/30 group"
             >
               <div className="absolute top-8 right-8 text-8xl font-bold text-white/5 font-display group-hover:text-brand-teal/10 transition-colors">
@@ -64,8 +76,8 @@ const HowItWorksSection = () => {
               <p className="text-white/60 text-lg">{step.desc}</p>
             </div>
           ))}
-          {}
-          <div className="w-[200px]" /> 
+          { }
+          <div className="w-[200px]" />
         </motion.div>
       </div>
     </section>
