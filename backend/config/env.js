@@ -4,7 +4,7 @@ dotenv.config();
 export const config = {
     port: process.env.PORT || 8000,
     apiKeyHeader: 'x-api-key',
-    appApiKey: process.env.APP_API_KEY || 'rakshamarg-dwklhfdewhff-efjjefwoihjfohgn',
+appApiKey: process.env.APP_API_KEY,
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     geminiApiKey: process.env.GEMINI_API_KEY,
     rateLimit: {

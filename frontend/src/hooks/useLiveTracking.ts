@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-const API_BASE_URL = 'http://localhost:3000/api/v1/routes';
+import { API_BASE_URL, API_KEY } from '../config';
 
 export const useLiveTracking = (
     routeResult: any,
